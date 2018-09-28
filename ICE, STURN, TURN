@@ -1,0 +1,17 @@
+Why do we need ICE?
+
+IP addresses allow computers to communicate. When there is a router (or any device) between your computer and another computer it means you won't be able to talk to each other. Why? There is a router or device in the way. You see the router's ip, but not the computer's. Of course this would make the internet secure, but useless.
+
+Routers allow communication. How? They map their IP Address and Port to specific computers that sit behind them. How do you find out these values? That is what STUN is for.
+
+STUN Explained
+
+A STUN server will listen for a ping from a computer and relay back to the computer the IP address and port number it saw the communication come from. Now you can use this information to contact the computer and connect to the socket that made the request. That means the same socket/port that was used to contact the STUN server must be the one that will be listening.
+
+Issues: Worst of all, routers can be sneaky. They might change the mapped port each time you try to connect, so you can't necessarily use the same information for too long, but you should be scared that your router IP address might change anyway as most internet IP addresses are dynamic. The router might be even sneakier and only allow communication if the computer contacts a server only that server may communicate information back to the computer and no other computer. These types of issues are actually performed on purpose for security.
+
+TURN Explained
+
+Turn solves all of the issues with STUN. Routers and devices allow outgoing communication. The TURN server decides to take that oppurtunity and build a connection. The router allows that because the computer behind the router is the one who started the communication process. Both computers behind routers do this and communicate through the TURN server which relays information between the two computers.
+
+Yes, if one of the computers is not behind any device that masks its true IP address than any computer behind a router should be able to reach it. Then the connection can be established. 
